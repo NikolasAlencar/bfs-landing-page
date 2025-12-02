@@ -4,14 +4,17 @@ import "./header.css";
 import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function Header() {
   const { theme } = useTheme();
-  console.log(theme)
+  const router = useRouter();
+
   return (
     <header className="header">
       <div className="container">
-        <div className="logo">
+        <div className="logo" onClick={() => router.push("/")}>
           {
             <Image
               key={theme}
@@ -28,9 +31,10 @@ export function Header() {
         </div>
 
         <nav className="nav">
-          <a href="#sobre">Sobre</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#contato">Contato</a>
+          <Link href="/">Início</Link>
+          <Link href="/quem-somos">Sobre</Link>
+          <Link href="/servicos">Serviços</Link>
+          <Link href="/contato">Contato</Link>
         </nav>
 
         <ThemeToggle />
