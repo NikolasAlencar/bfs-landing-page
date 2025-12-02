@@ -1,0 +1,38 @@
+.header {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  border-bottom: 1px solid var(--color-border);
+  padding: 16px 0;
+}
+
+/* container */
+.header .container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo */
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  margin-right: 8px;
+}
+
+/* nav */
+.header .nav a {
+  margin-left: 20px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header .nav a:hover {
+  color: var(--color-primary);
+}

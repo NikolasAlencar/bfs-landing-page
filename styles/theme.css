@@ -1,0 +1,32 @@
+/* ------------------------- */
+/*          LIGHT            */
+/* ------------------------- */
+
+:root {
+  --color-primary: #1E3A8A;
+  --color-primary-light: #3B82F6;
+
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #F3F4F6;
+
+  --color-text: #111827;
+  --color-text-soft: #374151;
+
+  --color-border: #E5E7EB;
+}
+
+/* ------------------------- */
+/*          DARK             */
+/* ------------------------- */
+
+.dark-theme {
+  --color-primary-light: #2563EB;
+
+  --color-bg: #0A0A0A;
+  --color-bg-soft: #111827;
+
+  --color-text: #F9FAFB;
+  --color-text-soft: #9CA3AF;
+
+  --color-border: #1F2937;
+}

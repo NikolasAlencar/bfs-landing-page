@@ -1,0 +1,47 @@
+.services-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.services-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+/* 🔥 Aqui está o ponto: grid alinhado ao container */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.service-card {
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+}
+
+.service-card h3 {
+  color: var(--color-text);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+}
