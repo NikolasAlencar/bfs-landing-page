@@ -1,0 +1,112 @@
+.page-container {
+  color: var(--color-text);
+  margin-top: 5rem; 
+}
+
+/* Hero interno */
+.page-hero {
+  text-align: center;
+  padding: 5rem 1.25rem; 
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero h1 {
+  font-size: 2.625rem; 
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.page-hero p {
+  font-size: 1.125rem; 
+  margin-top: 0.75rem; 
+  color: var(--color-text-soft);
+}
+
+.mv-card:hover {
+  transform: translateY(-0.25rem); 
+  border-color: var(--color-primary);
+}
+
+/* About */
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5rem; 
+  gap: 3.125rem; 
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 2rem; 
+  margin-bottom: 1.25rem; 
+}
+
+.about-text p {
+  margin-bottom: 1rem; 
+  font-size: 1rem; 
+  color: var(--color-text-soft);
+}
+
+.about-image img {
+  border-radius: 0.75rem; 
+  object-fit: cover;
+}
+
+/* Missão, Visão, Valores */
+.mv-container {
+  margin-top: 5rem; 
+  display: grid;
+  gap: 1.25rem; 
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); 
+}
+
+.mv-card {
+  background: var(--color-bg-soft);
+  padding: 1.875rem; 
+  border-radius: 0.75rem; 
+  border: 1px solid var(--color-border);
+  transition: 0.2s ease;
+}
+
+.mv-card h3 {
+  margin-top: 1rem; 
+  margin-bottom: 0.5rem; 
+}
+
+/* Dados oficiais */
+.company-section {
+  margin-top: 5rem; 
+  padding-bottom: 5rem; 
+}
+
+.company-section ul {
+  margin-top: 1.25rem; 
+  line-height: 1.8;
+}
+
+.company-section li {
+  color: var(--color-text-soft);
+}
+
+.quem-somos-image {
+  height: 32.5rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.75rem; 
+}
+
+/* Responsivo */
+@media (max-width: 850px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .quem-somos-image {
+    height: 18.75rem;
+  }
+}
