@@ -1,6 +1,6 @@
 .header {
   font-family: 'Montserrat', 'Poppins', sans-serif;
-  background: var(--color-primary);
+  background: var(--color-bg);
   position: fixed;
   top: 0;
   width: 100%;
