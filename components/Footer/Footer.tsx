@@ -1,6 +1,12 @@
 import Link from "next/link";
 import "./footer.css";
 import Image from "next/image";
+import {
+  IoLogoInstagram,
+  IoLogoLinkedin,
+  IoLogoWhatsapp,
+} from "react-icons/io";
+import { AiOutlineMail } from "react-icons/ai";
 
 export function Footer() {
   return (
@@ -38,16 +44,54 @@ export function Footer() {
           </ul>
         </div>
 
+        {/* Contatos com ícones */}
         <div className="footer-social">
           <h4>Contato</h4>
-          <p>Email: contato@bfs.com.br</p>
-          <p>WhatsApp: (11) 99999-9999</p>
+
+          <div className="flex">
+            <div className="footer-contact-item">
+              <a href="mailto:contato@bfs.com.br">
+                <AiOutlineMail size={40} />
+              </a>
+            </div>
+
+            <div className="footer-contact-item">
+              <a
+                href="https://wa.me/5511999999999"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoWhatsapp size={40} />
+              </a>
+            </div>
+
+            <div className="footer-contact-item">
+              <a
+                href="https://www.instagram.com/businessfastsolution/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoInstagram size={40} />
+              </a>
+            </div>
+
+            <div className="footer-contact-item">
+              <a
+                href="https://www.linkedin.com/in/nikolas-alencar-234474182/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoLinkedin size={40} />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} Business Fast Solutions. Todos os direitos reservados.
+          © {new Date().getFullYear()} Business Fast Solutions. Todos os
+          direitos reservados.
         </p>
       </div>
     </footer>

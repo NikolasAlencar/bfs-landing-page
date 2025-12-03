@@ -3,12 +3,16 @@
   color: var(--foreground);
   padding: 3rem 0 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+  .flex {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
 .footer .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 3rem;
   flex-wrap: wrap;
 }
@@ -63,4 +67,3 @@
     align-items: flex-start;
   }
 }
-
