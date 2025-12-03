@@ -1,7 +1,6 @@
 "use client";
 
 import "./contato.css";
-import Image from "next/image";
 
 export default function ContatoPage() {
   return (
@@ -39,7 +38,7 @@ export default function ContatoPage() {
           <p>Envie sua solicitação e retornaremos rapidamente.</p>
           <a href="mailto:businessfastsolutions04@gmail.com">Enviar Email</a>
         </div>
-        
+
         <div className="contact-card">
           <h3>LinkedIn</h3>
           <p>Conecte-se conosco para oportunidades e relações profissionais.</p>
@@ -54,7 +53,7 @@ export default function ContatoPage() {
 
         <div className="contact-card">
           <h3>Endereço</h3>
-          <p>Av. Dr. Arnaldo, 333 – São Paulo, SP</p>
+          <p>Av. Paulista, 1636 - Pavmto15 Conj 4 Sala 1504 - Bela Vista - São Paulo, SP</p>
           <a href="https://www.google.com/maps" target="_blank">
             Ver no Mapa
           </a>
