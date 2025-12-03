@@ -37,3 +37,9 @@
 .header .nav a:hover {
   color: var(--color-primary);
 }
+
+@media (max-width: 550px) {
+  .logo {
+    display: none;
+  }
+}
