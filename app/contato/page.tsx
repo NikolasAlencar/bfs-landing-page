@@ -4,6 +4,13 @@ import { useState } from "react";
 import "./contato.css";
 import { Modal } from "@/components/Modal/Modal";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+import { AiOutlineMail } from "react-icons/ai";
+import {
+  IoLogoInstagram,
+  IoLogoLinkedin,
+  IoLogoWhatsapp,
+} from "react-icons/io";
+import { CiLocationOn } from "react-icons/ci";
 
 export default function ContatoPage() {
   const [loading, setLoading] = useState(false);
@@ -36,7 +43,7 @@ export default function ContatoPage() {
       setModalType("error");
       setModalMessage("Ocorreu um erro ao enviar sua mensagem.");
     }
-    
+
     setLoading(false);
     setModalOpen(true);
     setForm({ nome: "", email: "", assunto: "", mensagem: "" });
@@ -61,7 +68,10 @@ export default function ContatoPage() {
       {/* Cards de Contato */}
       <section className="contact-cards container">
         <div className="contact-card">
-          <h3>WhatsApp</h3>
+          <h3>
+            <IoLogoWhatsapp size={30} />
+            WhatsApp
+          </h3>
           <p>Fale diretamente com um especialista.</p>
           <a href="https://wa.me/5511940770068" target="_blank">
             Enviar Mensagem
@@ -69,7 +79,10 @@ export default function ContatoPage() {
         </div>
 
         <div className="contact-card">
-          <h3>Instagram</h3>
+          <h3>
+            <IoLogoInstagram size={30} />
+            Instagram
+          </h3>
           <p>Acompanhe novidades, atualizações e conteúdo exclusivo.</p>
           <a
             href="https://www.instagram.com/businessfastsolution/"
@@ -80,13 +93,19 @@ export default function ContatoPage() {
         </div>
 
         <div className="contact-card">
-          <h3>Email</h3>
+          <h3>
+            <AiOutlineMail size={30} />
+            Email
+          </h3>
           <p>Envie sua solicitação e retornaremos rapidamente.</p>
           <a href="mailto:businessfastsolutions04@gmail.com">Enviar Email</a>
         </div>
 
         <div className="contact-card">
-          <h3>LinkedIn</h3>
+          <h3>
+            <IoLogoLinkedin size={30} />
+            LinkedIn
+          </h3>
           <p>Conecte-se conosco para oportunidades e relações profissionais.</p>
           <a
             href="https://www.linkedin.com/in/nikolas-alencar-234474182/"
@@ -98,7 +117,10 @@ export default function ContatoPage() {
         </div>
 
         <div className="contact-card">
-          <h3>Endereço</h3>
+          <h3>
+            <CiLocationOn size={30} />
+            Endereço
+          </h3>
           <p>Av. Paulista, 1636 - Bela Vista - São Paulo, SP</p>
           <a href="https://www.google.com/maps" target="_blank">
             Ver no Mapa

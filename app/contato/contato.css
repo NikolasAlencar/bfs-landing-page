@@ -6,7 +6,7 @@
 /* HERO */
 .contact-hero {
   text-align: center;
-  padding: 4rem 1.5rem;
+  padding: 3rem 1.25rem;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -47,6 +47,10 @@
 .contact-card h3 {
   margin-top: 1rem;
   font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
 }
 
 .contact-card p {
