@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./contato.css";
 import { Modal } from "@/components/Modal/Modal";
+import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function ContatoPage() {
   const [loading, setLoading] = useState(false);
@@ -144,7 +145,7 @@ export default function ContatoPage() {
           />
 
           <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? "Enviando..." : "Enviar Mensagem"}
+            {loading ? <LoadingSpinner /> : "Enviar Mensagem"}
           </button>
         </form>
       </section>

@@ -1,0 +1,15 @@
+.loader {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid transparent;
+  border-top-color: var(--color-bg-soft);
+  border-radius: 50%;
+  display: inline-block;
+  animation: spinner 0.7s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
