@@ -1,8 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import "./contato.css";
 
 export default function ContatoPage() {
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    assunto: "",
+    mensagem: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    setLoading(false);
+
+    if (!res.ok) {
+      alert("Erro ao enviar mensagem.");
+      return;
+    }
+
+    alert("Mensagem enviada com sucesso!");
+    setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+  };
+
   return (
     <main className="page-container">
       {/* Hero Interno */}
@@ -53,7 +85,7 @@ export default function ContatoPage() {
 
         <div className="contact-card">
           <h3>Endereço</h3>
-          <p>Av. Paulista, 1636 - Pavmto15 Conj 4 Sala 1504 - Bela Vista - São Paulo, SP</p>
+          <p>Av. Paulista, 1636 - Bela Vista - São Paulo, SP</p>
           <a href="https://www.google.com/maps" target="_blank">
             Ver no Mapa
           </a>
@@ -64,18 +96,42 @@ export default function ContatoPage() {
       <section className="contact-form container">
         <h2>Envie uma Mensagem</h2>
 
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
           <div className="form-grid">
-            <input type="text" placeholder="Seu nome" required />
-            <input type="email" placeholder="Seu email" required />
+            <input
+              type="text"
+              placeholder="Seu nome"
+              required
+              value={form.nome}
+              onChange={(e) => setForm({ ...form, nome: e.target.value })}
+            />
+            <input
+              type="email"
+              placeholder="Seu email"
+              required
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
           </div>
 
-          <input type="text" placeholder="Assunto" required />
+          <input
+            type="text"
+            placeholder="Assunto"
+            required
+            value={form.assunto}
+            onChange={(e) => setForm({ ...form, assunto: e.target.value })}
+          />
 
-          <textarea placeholder="Mensagem" rows={6} required />
+          <textarea
+            placeholder="Mensagem"
+            rows={6}
+            required
+            value={form.mensagem}
+            onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
+          />
 
-          <button type="submit" className="btn-primary">
-            Enviar Mensagem
+          <button type="submit" className="btn-primary" disabled={loading}>
+            {loading ? "Enviando..." : "Enviar Mensagem"}
           </button>
         </form>
       </section>
