@@ -8,20 +8,25 @@ export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <label className="switch">
-      <input
-        type="checkbox"
-        checked={theme === "dark"}
-        onChange={toggleTheme}
-      />
-      <span className="slider">
-        <span
-          className="icon"
-          style={theme === "light" ? { left: "0.5rem" } : undefined}
-        >
-          {theme === "dark" ? <FiMoon size={16} /> : <FiSun size={16} />}
+    <>
+      {/* Toggle Desktop */}
+      <label className="switch theme-toggle-desktop">
+        <input
+          type="checkbox"
+          checked={theme === "dark"}
+          onChange={toggleTheme}
+        />
+        <span className="slider">
+          <span className="icon">
+            {theme === "dark" ? <FiMoon size={16} /> : <FiSun size={16} />}
+          </span>
         </span>
-      </span>
-    </label>
+      </label>
+
+      {/* Botão Mobile */}
+      <button className="theme-toggle-mobile" onClick={toggleTheme}>
+        {theme === "dark" ? <FiMoon size={16} /> : <FiSun size={16} />}
+      </button>
+    </>
   );
 }
