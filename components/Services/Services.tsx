@@ -1,5 +1,3 @@
-"use client";
-
 import "./services.css";
 
 import { FaBuilding } from "react-icons/fa";
