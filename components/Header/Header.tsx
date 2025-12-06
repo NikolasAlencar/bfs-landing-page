@@ -11,6 +11,13 @@ export function Header() {
   const { theme } = useTheme();
   const router = useRouter();
 
+  const navOptions = [
+    { name: "Início", path: "/" },
+    { name: "Sobre", path: "/quem-somos" },
+    { name: "Serviços", path: "/servicos" },
+    { name: "Contato", path: "/contato" },
+  ];
+
   return (
     <header className="header">
       <div className="container">
@@ -31,10 +38,11 @@ export function Header() {
         </div>
 
         <nav className="nav">
-          <Link href="/">Início</Link>
-          <Link href="/quem-somos">Sobre</Link>
-          <Link href="/servicos">Serviços</Link>
-          <Link href="/contato">Contato</Link>
+          {navOptions.map((option, index) => (
+            <Link key={index} href={option.path}>
+              {option.name}
+            </Link>
+          ))}
         </nav>
 
         <ThemeToggle />
