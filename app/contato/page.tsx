@@ -1,22 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import "./contato.css";
+
 import { Modal } from "@/components/Modal/Modal";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+
 import { AiOutlineMail } from "react-icons/ai";
-import {
-  IoLogoInstagram,
-  IoLogoLinkedin,
-  IoLogoWhatsapp,
-} from "react-icons/io";
+import { IoLogoInstagram, IoLogoLinkedin, IoLogoWhatsapp } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 
 export default function ContatoPage() {
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"success" | "error">("success");
-  const [modalMessage, setModalMessage] = useState("");
+  const [modal, setModal] = useState({
+    open: false,
+    type: "success" as "success" | "error",
+    message: "",
+  });
 
   const [form, setForm] = useState({
     nome: "",
@@ -25,9 +25,15 @@ export default function ContatoPage() {
     mensagem: "",
   });
 
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    },
+    [form]
+  );
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
 
     const res = await fetch("/api/send-email", {
@@ -36,99 +42,90 @@ export default function ContatoPage() {
       body: JSON.stringify(form),
     });
 
-    if (res.ok) {
-      setModalType("success");
-      setModalMessage("Sua mensagem foi enviada com sucesso!");
-    } else {
-      setModalType("error");
-      setModalMessage("Ocorreu um erro ao enviar sua mensagem.");
-    }
-
     setLoading(false);
-    setModalOpen(true);
-    setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+
+    if (res.ok) {
+      setModal({
+        open: true,
+        type: "success",
+        message: "Sua mensagem foi enviada com sucesso!",
+      });
+      setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+    } else {
+      setModal({
+        open: true,
+        type: "error",
+        message: "Ocorreu um erro ao enviar sua mensagem.",
+      });
+    }
   };
+
+  const contatos = [
+    {
+      icon: <IoLogoWhatsapp size={30} />,
+      title: "WhatsApp",
+      desc: "Fale diretamente com um especialista.",
+      link: "https://wa.me/5511940770068",
+      label: "Enviar Mensagem",
+    },
+    {
+      icon: <IoLogoInstagram size={30} />,
+      title: "Instagram",
+      desc: "Acompanhe novidades, atualizações e conteúdo exclusivo.",
+      link: "https://www.instagram.com/businessfastsolution/",
+      label: "Visitar Perfil",
+    },
+    {
+      icon: <AiOutlineMail size={30} />,
+      title: "Email",
+      desc: "Envie sua solicitação e retornaremos rapidamente.",
+      link: "mailto:businessfastsolutions04@gmail.com",
+      label: "Enviar Email",
+    },
+    {
+      icon: <IoLogoLinkedin size={30} />,
+      title: "LinkedIn",
+      desc: "Conecte-se conosco para oportunidades e relações profissionais.",
+      link: "https://www.linkedin.com/in/nikolas-alencar-234474182/",
+      label: "Acessar LinkedIn",
+    },
+    {
+      icon: <CiLocationOn size={30} />,
+      title: "Endereço",
+      desc: "Av. Paulista, 1636 – Bela Vista – São Paulo, SP",
+      link: "https://www.google.com/maps",
+      label: "Ver no Mapa",
+    },
+  ];
 
   return (
     <main className="page-container">
       <Modal
-        open={modalOpen}
-        type={modalType}
-        message={modalMessage}
-        onClose={() => setModalOpen(false)}
+        open={modal.open}
+        type={modal.type}
+        message={modal.message}
+        onClose={() => setModal({ ...modal, open: false })}
       />
 
-      {/* Hero Interno */}
       <section className="contact-hero">
-        <p>
-          Estamos prontos para atender sua empresa com agilidade e segurança.
-        </p>
+        <p>Estamos prontos para atender sua empresa com agilidade e segurança.</p>
       </section>
 
-      {/* Cards de Contato */}
       <section className="contact-cards container">
-        <div className="contact-card">
-          <h3>
-            <IoLogoWhatsapp size={30} />
-            WhatsApp
-          </h3>
-          <p>Fale diretamente com um especialista.</p>
-          <a href="https://wa.me/5511940770068" target="_blank">
-            Enviar Mensagem
-          </a>
-        </div>
-
-        <div className="contact-card">
-          <h3>
-            <IoLogoInstagram size={30} />
-            Instagram
-          </h3>
-          <p>Acompanhe novidades, atualizações e conteúdo exclusivo.</p>
-          <a
-            href="https://www.instagram.com/businessfastsolution/"
-            target="_blank"
-          >
-            Visitar Perfil
-          </a>
-        </div>
-
-        <div className="contact-card">
-          <h3>
-            <AiOutlineMail size={30} />
-            Email
-          </h3>
-          <p>Envie sua solicitação e retornaremos rapidamente.</p>
-          <a href="mailto:businessfastsolutions04@gmail.com">Enviar Email</a>
-        </div>
-
-        <div className="contact-card">
-          <h3>
-            <IoLogoLinkedin size={30} />
-            LinkedIn
-          </h3>
-          <p>Conecte-se conosco para oportunidades e relações profissionais.</p>
-          <a
-            href="https://www.linkedin.com/in/nikolas-alencar-234474182/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Acessar LinkedIn
-          </a>
-        </div>
-
-        <div className="contact-card">
-          <h3>
-            <CiLocationOn size={30} />
-            Endereço
-          </h3>
-          <p>Av. Paulista, 1636 - Bela Vista - São Paulo, SP</p>
-          <a href="https://www.google.com/maps" target="_blank">
-            Ver no Mapa
-          </a>
-        </div>
+        {contatos.map((item, i) => (
+          <div className="contact-card" key={i}>
+            <h3>
+              {item.icon}
+              {item.title}
+            </h3>
+            <p>{item.desc}</p>
+            <a href={item.link} target="_blank">
+              {item.label}
+            </a>
+          </div>
+        ))}
       </section>
 
-      {/* Formulário */}
       <section className="contact-form container">
         <h2>Envie uma Mensagem</h2>
 
@@ -136,34 +133,38 @@ export default function ContatoPage() {
           <div className="form-grid">
             <input
               type="text"
+              name="nome"
               placeholder="Seu nome"
               required
               value={form.nome}
-              onChange={(e) => setForm({ ...form, nome: e.target.value })}
+              onChange={handleChange}
             />
             <input
               type="email"
+              name="email"
               placeholder="Seu email"
               required
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={handleChange}
             />
           </div>
 
           <input
             type="text"
+            name="assunto"
             placeholder="Assunto"
             required
             value={form.assunto}
-            onChange={(e) => setForm({ ...form, assunto: e.target.value })}
+            onChange={handleChange}
           />
 
           <textarea
+            name="mensagem"
             placeholder="Mensagem"
             rows={6}
             required
             value={form.mensagem}
-            onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
+            onChange={handleChange}
           />
 
           <button type="submit" className="btn-primary" disabled={loading}>
