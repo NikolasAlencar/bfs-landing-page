@@ -1,10 +1,16 @@
 "use client";
 
 import "./services.css";
-import { ServiceIcon } from "@/components/ServiceIcon/ServiceIcon";
+
+import { FaBuilding } from "react-icons/fa";
+import { BsPatchCheck } from "react-icons/bs";
+import { LuBookCopy } from "react-icons/lu";
+import { HiOutlineDocumentSearch } from "react-icons/hi";
 
 export function Services() {
-  const services = [
+  type IconKey = "escritorio" | "certificacao" | "livro" | "certidao";
+
+  const services: Array<{ icon: IconKey; title: string; desc: string }> = [
     {
       icon: "escritorio",
       title: "Legalização Empresarial",
@@ -27,6 +33,13 @@ export function Services() {
     },
   ];
 
+  const serviceIcons: Record<IconKey, React.ReactNode> = {
+    escritorio: <FaBuilding size={30} />,
+    certificacao: <BsPatchCheck size={30} />,
+    livro: <LuBookCopy size={30} />,
+    certidao: <HiOutlineDocumentSearch size={30} />,
+  };
+
   return (
     <section className="services-section container" id="servicos">
       <h2>Serviços</h2>
@@ -34,7 +47,7 @@ export function Services() {
       <div className="services-grid">
         {services.map((item, index) => (
           <div className="service-card" key={index}>
-            <ServiceIcon icon={item.icon} />
+            <div className="service-icon">{serviceIcons[item.icon]}</div>
 
             <h3>{item.title}</h3>
             <p>{item.desc}</p>
