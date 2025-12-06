@@ -8,6 +8,7 @@ import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { LuFolderCog } from "react-icons/lu";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { HiBadgeCheck } from "react-icons/hi";
+import { JSX } from "react";
 
 export default function ServicosPage() {
   const servicos = [
@@ -43,7 +44,7 @@ export default function ServicosPage() {
     },
   ];
 
-  const icons = {
+  const icons: Record<string, JSX.Element> = {
     escritorio: <IoBusinessSharp size={30} />,
     certificacao: <HiBadgeCheck size={30} />,
     livro: <PiNotebookBold size={30} />,

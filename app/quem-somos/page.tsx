@@ -7,6 +7,7 @@ import Image from "next/image";
 import { FaHandshake } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoRocketOutline } from "react-icons/io5";
+import { JSX } from "react";
 
 export default function QuemSomosPage() {
   const { theme } = useTheme();
@@ -29,7 +30,7 @@ export default function QuemSomosPage() {
     },
   ];
 
-  const sobreIcons = {
+  const sobreIcons: Record<string, JSX.Element> = {
     missao: <IoRocketOutline size={30} />,
     valores: <FaHandshake size={30} />,
     visao: <AiOutlineEye size={30} />,
