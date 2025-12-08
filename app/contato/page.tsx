@@ -10,8 +10,12 @@ import { AiOutlineMail } from "react-icons/ai";
 import { IoLogoInstagram, IoLogoLinkedin, IoLogoWhatsapp } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 export default function ContatoPage() {
   const [loading, setLoading] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
   const [modal, setModal] = useState({
     open: false,
     type: "success" as "success" | "error",
@@ -34,12 +38,23 @@ export default function ContatoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ❗ Se não marcou o captcha, bloqueia envio
+    if (!captchaToken) {
+      setModal({
+        open: true,
+        type: "error",
+        message: "Por favor, confirme que você não é um robô.",
+      });
+      return;
+    }
+
     setLoading(true);
 
     const res = await fetch("/api/send-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, captchaToken }),
     });
 
     setLoading(false);
@@ -51,6 +66,7 @@ export default function ContatoPage() {
         message: "Sua mensagem foi enviada com sucesso!",
       });
       setForm({ nome: "", email: "", assunto: "", mensagem: "" });
+      setCaptchaToken(null); // limpa captcha
     } else {
       setModal({
         open: true,
@@ -85,7 +101,7 @@ export default function ContatoPage() {
     {
       icon: <IoLogoLinkedin size={30} />,
       title: "LinkedIn",
-      desc: "Conecte-se conosco para oportunidades e relações profissionais.",
+      desc: "Conecte-se conosco.",
       link: "https://www.linkedin.com/company/business-fast-solutions/",
       label: "Acessar LinkedIn",
     },
@@ -165,6 +181,13 @@ export default function ContatoPage() {
             required
             value={form.mensagem}
             onChange={handleChange}
+          />
+
+          {/* 🔥 CAPTCHA AQUI */}
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+            onChange={(token) => setCaptchaToken(token)}
+            className="captcha"
           />
 
           <button type="submit" className="btn-primary" disabled={loading}>

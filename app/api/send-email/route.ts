@@ -3,8 +3,28 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { nome, email, assunto, mensagem } = await req.json();
+    const { nome, email, assunto, mensagem, captchaToken } = await req.json();
 
+    // 1️⃣ VALIDAR RECAPTCHA
+    const captchaRes = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`,
+      }
+    );
+
+    const data = await captchaRes.json();
+
+    if (!data.success) {
+      return NextResponse.json(
+        { success: false, error: "Captcha inválido" },
+        { status: 400 }
+      );
+    }
+
+    // 2️⃣ Enviar email
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
