@@ -86,7 +86,7 @@ export default function ContatoPage() {
       icon: <IoLogoLinkedin size={30} />,
       title: "LinkedIn",
       desc: "Conecte-se conosco para oportunidades e relações profissionais.",
-      link: "https://www.linkedin.com/in/nikolas-alencar-234474182/",
+      link: "https://www.linkedin.com/company/business-fast-solutions/",
       label: "Acessar LinkedIn",
     },
     {

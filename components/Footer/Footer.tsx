@@ -82,7 +82,7 @@ export function Footer() {
 
             <div className="footer-contact-item">
               <a
-                href="https://www.linkedin.com/in/nikolas-alencar-234474182/"
+                href="https://www.linkedin.com/company/business-fast-solutions/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
