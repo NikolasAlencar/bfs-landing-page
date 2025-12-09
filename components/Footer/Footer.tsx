@@ -62,7 +62,7 @@ export function Footer() {
 
             <div className="footer-contact-item">
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5511940770068"
                 target="_blank"
                 rel="noopener noreferrer"
               >
