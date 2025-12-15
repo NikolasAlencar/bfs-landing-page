@@ -72,7 +72,7 @@ export function Footer() {
 
             <div className="footer-contact-item">
               <a
-                href="https://www.instagram.com/businessfastsolution/"
+                href="https://www.instagram.com/businessfastsolutions_/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -88,7 +88,7 @@ export default function ContatoPage() {
       icon: <IoLogoInstagram size={30} />,
       title: "Instagram",
       desc: "Acompanhe novidades, atualizações e conteúdo exclusivo.",
-      link: "https://www.instagram.com/businessfastsolution/",
+      link: "https://www.instagram.com/businessfastsolutions_/",
       label: "Visitar Perfil",
     },
     {
